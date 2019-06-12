@@ -4,7 +4,7 @@ resource "random_id" "instance_id" {
 
 
 resource "azurerm_resource_group" "main" {
-  name     = "${var.prefix}-resources"
+  name     = "${var.prefix}-resources1"
   location = var.location
 }
 

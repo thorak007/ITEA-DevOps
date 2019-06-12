@@ -1,13 +1,19 @@
+
+// Terraform plugin for creating random ids
+resource "random_id" "instance_id" {
+ byte_length = 8
+}
+
 resource "azurerm_resource_group" "itea-aks" {
   name     = "${var.prefix}-k8s-resources"
   location = "${var.location}"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${var.prefix}-k8s"
+  name                = "${var.prefix}-k8s-${random_id.instance_id.hex}"
   location            = "${azurerm_resource_group.itea-aks.location}"
   resource_group_name = "${azurerm_resource_group.itea-aks.name}"
-  dns_prefix          = "${var.prefix}-k8s"
+  dns_prefix          = "${var.prefix}-k8s-${random_id.instance_id.hex}"
 
   agent_pool_profile {
     name            = "default"

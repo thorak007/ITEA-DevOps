@@ -1,3 +1,7 @@
+resource "random_id" "instance_id" {
+ byte_length = 8
+}
+
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = var.location

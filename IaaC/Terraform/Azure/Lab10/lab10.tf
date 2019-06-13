@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "itea-aks" {
+resource "azurerm_resource_group" "itexam" {
   name     = "${var.prefix}-k8s-resources"
   location = "${var.location}"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-k8s"
-  location            = "${azurerm_resource_group.itea-aks.location}"
-  resource_group_name = "${azurerm_resource_group.itea-aks.name}"
+  location            = "${azurerm_resource_group.itexam.location}"
+  resource_group_name = "${azurerm_resource_group.itexam.name}"
   dns_prefix          = "${var.prefix}-k8s"
 
   agent_pool_profile {
